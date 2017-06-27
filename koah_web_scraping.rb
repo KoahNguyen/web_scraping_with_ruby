@@ -107,8 +107,23 @@ class KoahScraper
   end
 end
 
-start_time = Time.now
-KoahScraper.call(4)
-end_time = Time.now
-runtime = end_time - start_time
-puts "Runtime: #{runtime} seconds"
+def koah_web_scraping(n_page)
+  start_time = Time.now
+  KoahScraper.call(n_page)
+  end_time = Time.now
+  runtime = end_time - start_time
+  puts "Runtime: #{runtime} seconds"
+end
+
+if ARGV[0].nil?
+  puts 'ruby koah_web_scraping.rb [n_page]'
+  puts
+  puts 'OPTIONS'
+  puts '  n_page: page number'
+  puts
+  puts 'EXAMPLE'
+  puts '  ruby koah_web_scraping.rb 4'
+else
+  n_page = ARGV[0].to_i
+  koah_web_scraping(n_page)
+end
