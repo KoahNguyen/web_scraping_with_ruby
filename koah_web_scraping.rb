@@ -1,3 +1,4 @@
+require 'fileutils'
 require 'httparty'
 require 'nokogiri'
 require 'pry'
@@ -6,6 +7,7 @@ require 'csv'
 class KoahScraper
   class << self
     def call(n_page)
+      $logger.puts('Scraping...')
       init_variables(n_page)
       first_call
       @n_page.times { second_call } if @n_page.positive?
@@ -35,6 +37,7 @@ class KoahScraper
     end
 
     def parse_page_builder(link)
+      $logger.puts("#{link}")
       page        = HTTParty.get(link)
       @parse_page = Nokogiri::HTML(page)
     end
@@ -50,7 +53,7 @@ class KoahScraper
         end
         url_option = @parse_page.at_css('#pagnNextLink')&.attribute('href')&.value
       end
-      @next_link = "@domain#{url_option}"
+      @next_link = "#{@domain}#{url_option}"
     end
 
     def product_links_builder(first_time = false)
@@ -65,7 +68,7 @@ class KoahScraper
     end
 
     def csv_writer
-      products_csv = CSV.open('products.csv', 'w', col_sep: '|')
+      products_csv = CSV.open('data/products.csv', 'w', col_sep: '|')
       @product_links.each do |link|
         products_csv << product_data(link)
       end
@@ -107,12 +110,32 @@ class KoahScraper
   end
 end
 
-def koah_web_scraping(n_page)
-  start_time = Time.now
-  KoahScraper.call(n_page)
-  end_time = Time.now
-  runtime = end_time - start_time
-  puts "Runtime: #{runtime} seconds"
+class KoahScraping
+  class << self
+    def call(n_page)
+      init_directory
+      $logger    = File.open('log/scraping.log', 'w')
+      start_time = Time.now
+      KoahScraper.call(n_page)
+      end_time   = Time.now
+      runtime    = end_time - start_time
+      $logger.puts
+      $logger.puts("Runtime: #{runtime} seconds")
+      $logger.close
+    end
+
+    private
+
+    def init_directory
+      create_directory('data')
+      create_directory('log')
+    end
+
+    def create_directory(directory_name)
+      directory_path = Dir.pwd + '/' + directory_name
+      FileUtils.mkdir(directory_path) unless Dir.exist?(directory_path)
+    end
+  end
 end
 
 if ARGV[0].nil?
@@ -125,5 +148,5 @@ if ARGV[0].nil?
   puts '  ruby koah_web_scraping.rb 4'
 else
   n_page = ARGV[0].to_i
-  koah_web_scraping(n_page)
+  KoahScraping.call(n_page)
 end
