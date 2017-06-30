@@ -11,5 +11,6 @@ $ ruby koah_web_scraping.rb 2
 
 ### Todos
 
+ - Fix min n_page
  - Fix lost connection
  - Using multi thread

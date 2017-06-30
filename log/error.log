@@ -38,3 +38,20 @@ https://www.amazon.com/Programming-Languages-Computers-Technology/s?ie=UTF8&page
 https://stackoverflow.com/questions/12358682/rails-post-socketerror-getaddrinfo-temporary-failure-in-name-resolution-on
 ================================================================================
 ================================================================================
+/usr/local/rvm/gems/ruby-2.3.0/gems/httparty-0.15.5/lib/httparty/request.rb:74:in `path=': bad argument (expected URI object or URI string) (ArgumentError)
+        from /usr/local/rvm/gems/ruby-2.3.0/gems/httparty-0.15.5/lib/httparty/request.rb:62:in `initialize'
+        from /usr/local/rvm/gems/ruby-2.3.0/gems/httparty-0.15.5/lib/httparty.rb:563:in `new'
+        from /usr/local/rvm/gems/ruby-2.3.0/gems/httparty-0.15.5/lib/httparty.rb:563:in `perform_request'
+        from /usr/local/rvm/gems/ruby-2.3.0/gems/httparty-0.15.5/lib/httparty.rb:489:in `get'
+        from /usr/local/rvm/gems/ruby-2.3.0/gems/httparty-0.15.5/lib/httparty.rb:601:in `get'
+        from koah_web_scraping.rb:47:in `parse_page_builder'
+        from koah_web_scraping.rb:94:in `product_title_parse'
+        from koah_web_scraping.rb:86:in `product_data'
+        from koah_web_scraping.rb:80:in `block in csv_writer'
+        from koah_web_scraping.rb:79:in `each'
+        from koah_web_scraping.rb:79:in `csv_writer'
+        from koah_web_scraping.rb:15:in `call'
+        from koah_web_scraping.rb:126:in `call'
+        from koah_web_scraping.rb:159:in `<main>'
+================================================================================
+================================================================================

@@ -99,6 +99,8 @@ class KoahScraper
         product_title = @parse_page.at_css('#productTitle')&.text
       end
       product_title
+    rescue
+      $logger.puts("Error: #{link}")
     end
 
     def product_author_parse
