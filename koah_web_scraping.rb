@@ -69,13 +69,13 @@ class KoahScraper
                          @parse_page.css('div#resultsCol > div#centerMinus > div#atfResults > ul > li')
                        end
       search_results.each do |result|
-        @product_links << result.at_css('div > div > div > div[2] > div[2] > div[1] > a')&.attribute('href')&.value&.split('#')&.first
+        product_link = result.at_css('div > div > div > div[2] > div[2] > div[1] > a')&.attribute('href')&.value&.split('#')&.first
+        @product_links << product_link unless product_link.nil?
       end
     end
 
     def csv_writer
       products_csv = CSV.open('data/products.csv', 'w', col_sep: '|')
-      @product_links.compact
       @product_links.each do |link|
         products_csv << product_data(link)
       end
@@ -93,10 +93,13 @@ class KoahScraper
     def product_title_parse(link)
       parse_page_builder(link)
       product_title = @parse_page.at_css('#productTitle')&.text
+      retry_counter = 0
       while product_title.nil? do
         sleep 3
         parse_page_builder(link)
         product_title = @parse_page.at_css('#productTitle')&.text
+        break if retry_counter == 10
+        retry_counter += 1
       end
       product_title
     rescue
