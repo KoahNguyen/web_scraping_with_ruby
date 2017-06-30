@@ -11,6 +11,7 @@ class KoahScraper
       init_variables(n_page)
       first_call
       @n_page.times { second_call } if @n_page.positive?
+      last_call
       csv_writer
       # Pry.start(binding)
     end
@@ -33,6 +34,11 @@ class KoahScraper
     def second_call
       parse_page_builder(@next_link)
       next_link_builder
+      product_links_builder
+    end
+
+    def last_call
+      parse_page_builder(@next_link)
       product_links_builder
     end
 
@@ -144,6 +150,7 @@ if ARGV[0].nil?
   puts
   puts 'OPTIONS'
   puts '  n_page: page number'
+  puts '  n_page = <max page number> - 1'
   puts
   puts 'EXAMPLE'
   puts '  ruby koah_web_scraping.rb 4'
