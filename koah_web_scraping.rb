@@ -63,12 +63,13 @@ class KoahScraper
                          @parse_page.css('div#resultsCol > div#centerMinus > div#atfResults > ul > li')
                        end
       search_results.each do |result|
-        @product_links << result.at_css('div > div > div > div[2] > div[2] > div[1] > a').attribute('href').value.split('#').first
+        @product_links << result.at_css('div > div > div > div[2] > div[2] > div[1] > a')&.attribute('href')&.value&.split('#')&.first
       end
     end
 
     def csv_writer
       products_csv = CSV.open('data/products.csv', 'w', col_sep: '|')
+      @product_links.compact
       @product_links.each do |link|
         products_csv << product_data(link)
       end

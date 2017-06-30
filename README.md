@@ -8,3 +8,8 @@ $ bundle
 $ ruby koah_web_scraping.rb
 $ ruby koah_web_scraping.rb 2
 ```
+
+### Todos
+
+ - Fix lost connection
+ - Using multi thread

@@ -1,0 +1,40 @@
+https://www.amazon.com/Programming-Languages-Computers-Technology/s?ie=UTF8&page=11&rh=n%3A3952
+koah_web_scraping.rb:66:in `block in product_links_builder': undefined method `attribute' for nil:NilClass (NoMethodError)
+  from /home/welcome/.rvm/gems/ruby-2.3.1/gems/nokogiri-1.8.0/lib/nokogiri/xml/node_set.rb:190:in `block in each'
+  from /home/welcome/.rvm/gems/ruby-2.3.1/gems/nokogiri-1.8.0/lib/nokogiri/xml/node_set.rb:189:in `upto'
+  from /home/welcome/.rvm/gems/ruby-2.3.1/gems/nokogiri-1.8.0/lib/nokogiri/xml/node_set.rb:189:in `each'
+  from koah_web_scraping.rb:65:in `product_links_builder'
+  from koah_web_scraping.rb:36:in `second_call'
+  from koah_web_scraping.rb:13:in `block in call'
+  from koah_web_scraping.rb:13:in `times'
+  from koah_web_scraping.rb:13:in `call'
+  from koah_web_scraping.rb:119:in `call'
+  from koah_web_scraping.rb:151:in `<main>'
+================================================================================
+================================================================================
+https://www.amazon.com/Programming-Languages-Computers-Technology/s?ie=UTF8&page=100&rh=n%3A3952
+/home/welcome/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/net/http.rb:882:in `rescue in block in connect': Failed to open TCP connection to www.amazon.com:443 (getaddrinfo: Temporary failure in name resolution) (SocketError)
+  from /home/welcome/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/net/http.rb:879:in `block in connect'
+  from /home/welcome/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/timeout.rb:91:in `block in timeout'
+  from /home/welcome/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/timeout.rb:101:in `timeout'
+  from /home/welcome/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/net/http.rb:878:in `connect'
+  from /home/welcome/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/net/http.rb:863:in `do_start'
+  from /home/welcome/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/net/http.rb:852:in `start'
+  from /home/welcome/.rvm/rubies/ruby-2.3.1/lib/ruby/2.3.0/net/http.rb:1398:in `request'
+  from /home/welcome/.rvm/gems/ruby-2.3.1/gems/httparty-0.15.5/lib/httparty/request.rb:142:in `perform'
+  from /home/welcome/.rvm/gems/ruby-2.3.1/gems/httparty-0.15.5/lib/httparty.rb:563:in `perform_request'
+  from /home/welcome/.rvm/gems/ruby-2.3.1/gems/httparty-0.15.5/lib/httparty.rb:489:in `get'
+  from /home/welcome/.rvm/gems/ruby-2.3.1/gems/httparty-0.15.5/lib/httparty.rb:601:in `get'
+  from koah_web_scraping.rb:41:in `parse_page_builder'
+  from koah_web_scraping.rb:52:in `next_link_builder'
+  from koah_web_scraping.rb:35:in `second_call'
+  from koah_web_scraping.rb:13:in `block in call'
+  from koah_web_scraping.rb:13:in `times'
+  from koah_web_scraping.rb:13:in `call'
+  from koah_web_scraping.rb:120:in `call'
+  from koah_web_scraping.rb:152:in `<main>'
+========================================
+========================================
+https://stackoverflow.com/questions/12358682/rails-post-socketerror-getaddrinfo-temporary-failure-in-name-resolution-on
+================================================================================
+================================================================================
