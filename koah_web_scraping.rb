@@ -92,12 +92,12 @@ class KoahScraper
 
     def product_title_parse(link)
       parse_page_builder(link)
-      product_title = @parse_page.at_css('#productTitle')&.text
+      product_title = @parse_page.at_css('#productTitle')&.text&.tr("\n\t",'')&.strip&.squeeze(' ')
       retry_counter = 0
       while product_title.nil? do
         sleep 3
         parse_page_builder(link)
-        product_title = @parse_page.at_css('#productTitle')&.text
+        product_title = @parse_page.at_css('#productTitle')&.text&.tr("\n\t",'')&.strip&.squeeze(' ')
         break if retry_counter == 10
         retry_counter += 1
       end
@@ -107,8 +107,8 @@ class KoahScraper
     end
 
     def product_author_parse
-      product_author = @parse_page.at_css('#byline > span > span.a-declarative > a.a-link-normal.contributorNameID')&.text
-      product_author = @parse_page.at_css('#byline > span')&.text&.tr("\n\t",'')&.gsub(/\s+/, " ")&.strip if product_author.nil?
+      product_author = @parse_page.at_css('#byline > span > span.a-declarative > a.a-link-normal.contributorNameID')&.text&.tr("\n\t",'')&.strip&.squeeze(' ')
+      product_author = @parse_page.at_css('#byline > span')&.text&.tr("\n\t",'')&.strip&.squeeze(' ') if product_author.nil?
       product_author
     end
 
